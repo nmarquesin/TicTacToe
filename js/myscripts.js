@@ -3,10 +3,13 @@ var gameStarted = false;
 var player;
 var computer;
 var board = { "fieldA1": false, "fieldA2": false, "fieldA3": false, "fieldB1": false, "fieldB2": false, "fieldB3": false, "fieldC1": false, "fieldC2": false, "fieldC3": false}
+var boardPlayer = { "fieldA1": 0, "fieldA2": 0, "fieldA3": 0, "fieldB1": 0, "fieldB2": 0, "fieldB3": 0, "fieldC1": 0, "fieldC2": 0, "fieldC3": 0}
+var boardAI = { "fieldA1": 0, "fieldA2": 0, "fieldA3": false, "fieldB1": false, "fieldB2": false, "fieldB3": false, "fieldC1": false, "fieldC2": false, "fieldC3": false}
 var whoseTurnIsiT = false; // false => player, true => computer
 
 
 function startGame() {
+  board = { "fieldA1": false, "fieldA2": false, "fieldA3": false, "fieldB1": false, "fieldB2": false, "fieldB3": false, "fieldC1": false, "fieldC2": false, "fieldC3": false}
   gameStarted = true;
   whoseTurnIsiT = true;
   console.log("Game has started. Player selected: "+player+" . Computer plays "+computer);
@@ -29,13 +32,136 @@ function setPlayerX() {
 }
 
 function myFunction(field, playerTurn) {
-  if (board[field] === false) {
-    $("#"+field).html(playerTurn);
-    board[field] = true;
-    console.log("Board "+field+" is now "+board[field]);
-    checkWin();
-    whoseTurnIsiT = true;
+  if (gameStarted === true) {
+    if (board[field] === false) {
+      $("#"+field).html(playerTurn);
+      board[field] = true;
+      if (playerTurn === player) {
+        boardPlayer[field] = 1;
+      } else {
+        boardAI[field] = 1;
+      }
+      console.log("Board "+field+" is now "+board[field]);
+      checkWin();
+      whoseTurnIsiT = true;
+    }
   }
+}
+
+
+
+function checkWin() {
+  //check if player or computer wins
+
+  function playerWins() {
+    $("#message").html("Player wins!");
+    gameStarted = false;
+  }
+
+  function computerWins () {
+    $("#message").html("Computer wins!");
+    gameStarted = false;
+  }
+
+  switch (boardPlayer["fieldA1"] + boardPlayer["fieldA2"] + boardPlayer["fieldA3"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldB1"] + boardPlayer["fieldB2"] + boardPlayer["fieldB3"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldC1"] + boardPlayer["fieldC2"] + boardPlayer["fieldC3"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldA1"] + boardPlayer["fieldB1"] + boardPlayer["fieldC1"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldA2"] + boardPlayer["fieldB2"] + boardPlayer["fieldC2"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldA3"] + boardPlayer["fieldB3"] + boardPlayer["fieldC3"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldA1"] + boardPlayer["fieldB2"] + boardPlayer["fieldC3"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardPlayer["fieldA3"] + boardPlayer["fieldB2"] + boardPlayer["fieldC1"]) {
+    case 3:
+      playerWins();
+      break;
+    default:
+  }
+  switch (boardAI["fieldA1"] + boardAI["fieldA2"] + boardAI["fieldA3"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldB1"] + boardAI["fieldB2"] + boardAI["fieldB3"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldC1"] + boardAI["fieldC2"] + boardAI["fieldC3"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldA1"] + boardAI["fieldB1"] + boardAI["fieldC1"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldA2"] + boardAI["fieldB2"] + boardAI["fieldC2"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldA3"] + boardAI["fieldB3"] + boardAI["fieldC3"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldA1"] + boardAI["fieldB2"] + boardAI["fieldC3"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+switch (boardAI["fieldA3"] + boardAI["fieldB2"] + boardAI["fieldC1"]) {
+  case 3:
+    computerWins();
+    break;
+  default:
+}
+
+
+
 }
 
 function myFunctionA1() {
@@ -83,9 +209,7 @@ function myFunctionC3() {
   myFunction(field, player);
 }
 
-function checkWin() {
-  //check if player of computer wins
-}
+
 
 function nextAvailable() {
   for (var key in board) {

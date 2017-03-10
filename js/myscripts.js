@@ -175,6 +175,7 @@ function checkWin() {
   }
   if (count === 9) {
     $("#message").html("<p>It's a draw</p>");
+    gameStarted = false;
   }
 }
 

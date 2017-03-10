@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css\bootstrap-theme.css">
   <link rel="stylesheet" href="css\mystyles.css">
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-  <title>Free Code Camp's Pomodoro Clock</title>
+  <title>Free Code Camp's Tic Tac Toe</title>
 </head>
   <body>
 
@@ -17,13 +17,33 @@
 
       <div id="title" class="row">
         <div class="col-xs-12 text-center">
-          <h1>Tic Tac Toe</h1>
+          <h1> <span class="R">Tic</span> <span class="G">Tac</span> <span class="B">Toe</span></h1>
         </div>
       </div><!-- end of #title-->
 
       <div id="gameBody" class="row">
-        <p>Placeholder</p>
-      </div>
+        <div id="playerSelection" class="col-xs-12 text-center">
+          <p>Select player</p>
+          <div onclick="setPlayerO()" class="btn btn-default">O</div>
+          <div onclick="setPlayerX()" class="btn btn-default">X</div>
+        </div>
+        <div id="message" class="col-xs-12 text-center">
+          <p>? turn</p>
+        </div>
+        <div class="col-xs-3"></div>
+        <div id="board" class="col-xs-6">
+          <div id="fieldA1" onclick="myFunctionA1()" class="col-xs-4">PH</div>
+          <div id="fieldB1" onclick="myFunctionB1()" class="col-xs-4">PH</div>
+          <div id="fieldC1" onclick="myFunctionC1()" class="col-xs-4">PH</div>
+          <div id="fieldA2" onclick="myFunctionA2()" class="col-xs-4">PH</div>
+          <div id="fieldB2" onclick="myFunctionB2()" class="col-xs-4">PH</div>
+          <div id="fieldC2" onclick="myFunctionC2()" class="col-xs-4">PH</div>
+          <div id="fieldA3" onclick="myFunctionA3()" class="col-xs-4">PH</div>
+          <div id="fieldB3" onclick="myFunctionB3()" class="col-xs-4">PH</div>
+          <div id="fieldC3" onclick="myFunctionC3()" class="col-xs-4">PH</div>
+        </div>
+        <div class="col-xs-3"></div>
+      </div> <!-- end of #gameBody-->
 
     </div> <!-- end of .container-->
   </body>

@@ -1,6 +1,9 @@
 h1, p {
   font-family: 'Pacifico', cursive;
 }
+.placeholder {
+  color: white;
+}
 .R {
   color: red;
 }
@@ -28,4 +31,10 @@ h1, p {
   border-top-width: medium;
   border-top-style: solid;
   border-top-color: green;
+}
+#title{
+  margin: 30px;
+}
+#board {
+  padding: 20px;
 }

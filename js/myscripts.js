@@ -168,6 +168,14 @@ function checkWin() {
       break;
     default:
   }
+
+  var count = 0;
+  for (var item in board) {
+    if (board[item] === true) {count +=1;}
+  }
+  if (count === 9) {
+    $("#message").html("<p>It's a draw</p>");
+  }
 }
 
 function myFunctionA1() {

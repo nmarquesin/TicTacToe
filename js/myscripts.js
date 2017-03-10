@@ -14,7 +14,6 @@ function startGame() {
   boardAI = { "fieldA1": 0, "fieldA2": 0, "fieldA3": 0, "fieldB1": 0, "fieldB2": 0, "fieldB3": 0, "fieldC1": 0, "fieldC2": 0, "fieldC3": 0};
   gameStarted = true;
   whoseTurnIsiT = true;
-  console.log("Game has started. Player selected: "+player+" . Computer plays "+computer);
   for (var key in board) {
     $("#"+key).html("<span class='placeholder'>PH<span>");
     $("#message").html("<p>Computer's turn</p>");
@@ -49,7 +48,6 @@ function myFunction(field, playerTurn) {
       } else {
         boardAI[field] = 1;
       }
-      console.log("Board "+field+" is now "+board[field]);
       whoseTurnIsiT = true;
       $("#message").html("<p>Computer's turn</p>");
       checkWin();
@@ -58,17 +56,16 @@ function myFunction(field, playerTurn) {
 }
 
 
-
 function checkWin() {
   //check if player or computer wins
 
   function playerWins() {
-    $("#message").html("Player wins!");
+    $("#message").html("<p>Player wins!</p><p>Choose O or X to play again</p>");
     gameStarted = false;
   }
 
   function computerWins () {
-    $("#message").html("Computer wins!");
+    $("#message").html("<p>Computer wins!</p><p>Choose O or X to play again</p>");
     gameStarted = false;
   }
 
@@ -174,7 +171,7 @@ function checkWin() {
     if (board[item] === true) {count +=1;}
   }
   if (count === 9) {
-    $("#message").html("<p>It's a draw</p>");
+    $("#message").html("<p>It's a draw</p><p>Choose O or X to play again</p>");
     gameStarted = false;
   }
 }
@@ -225,22 +222,19 @@ function myFunctionC3() {
 }
 
 
-
 function nextAvailable() {
   for (var key in board) {
     if (board[key] === false) {
-      console.log(key + " -> " + board[key]);
       return key;
     }
   }
-}
+} // this function is the tic tac toe AI
 
 $(document).ready(function(){
   var gameplay = setInterval( function() {
     if (gameStarted === true && whoseTurnIsiT === true) {
       var nextField = nextAvailable();
       myFunction(nextField, computer);
-      console.log(board);
       whoseTurnIsiT = false;
       $("#message").html("<p>Player's turn</p>");
       checkWin();

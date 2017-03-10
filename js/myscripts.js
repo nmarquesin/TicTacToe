@@ -60,13 +60,23 @@ function checkWin() {
   //check if player or computer wins
 
   function playerWins() {
-    $("#message").html("<p>Player wins!</p><p>Choose O or X to play again</p>");
+    $("#message").html("<p>Player wins!</p>");
     gameStarted = false;
     resetGame = true;
   }
 
   function computerWins () {
-    $("#message").html("<p>Computer wins!</p><p>Choose O or X to play again</p>");
+    $("#message").html("<p>Computer wins!</p>");
+    gameStarted = false;
+    resetGame = true;
+  }
+
+  var count = 0;
+  for (var item in board) {
+    if (board[item] === true) {count +=1;}
+  }
+  if (count === 9) {
+    $("#message").html("<p>It's a draw</p>");
     gameStarted = false;
     resetGame = true;
   }
@@ -168,15 +178,6 @@ function checkWin() {
     default:
   }
 
-  var count = 0;
-  for (var item in board) {
-    if (board[item] === true) {count +=1;}
-  }
-  if (count === 9) {
-    $("#message").html("<p>It's a draw</p><p>Choose O or X to play again</p>");
-    gameStarted = false;
-    resetGame = true;
-  }
 }
 
 function myFunctionA1() {
@@ -226,12 +227,13 @@ function myFunctionC3() {
 
 
 function nextAvailable() {
+  // Tic tac toe's AI
   for (var key in board) {
     if (board[key] === false) {
       return key;
     }
   }
-} // this function is the tic tac toe AI
+}
 
 $(document).ready(function(){
   var gameplay = setInterval( function() {

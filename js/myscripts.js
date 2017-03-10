@@ -6,7 +6,7 @@ var board; // tic tac toe logic board
 var boardPlayer; // player's plays
 var boardAI; // AI's plays
 var whoseTurnIsiT = false; // false => player, true => computer
-
+var resetGame = false; // resets game 3 secs after ended
 
 function startGame() {
   board = { "fieldA1": false, "fieldA2": false, "fieldA3": false, "fieldB1": false, "fieldB2": false, "fieldB3": false, "fieldC1": false, "fieldC2": false, "fieldC3": false};
@@ -62,11 +62,13 @@ function checkWin() {
   function playerWins() {
     $("#message").html("<p>Player wins!</p><p>Choose O or X to play again</p>");
     gameStarted = false;
+    resetGame = true;
   }
 
   function computerWins () {
     $("#message").html("<p>Computer wins!</p><p>Choose O or X to play again</p>");
     gameStarted = false;
+    resetGame = true;
   }
 
   switch (boardPlayer["fieldA1"] + boardPlayer["fieldA2"] + boardPlayer["fieldA3"]) {
@@ -173,6 +175,7 @@ function checkWin() {
   if (count === 9) {
     $("#message").html("<p>It's a draw</p><p>Choose O or X to play again</p>");
     gameStarted = false;
+    resetGame = true;
   }
 }
 
@@ -232,6 +235,10 @@ function nextAvailable() {
 
 $(document).ready(function(){
   var gameplay = setInterval( function() {
+    if (resetGame === true) {
+      resetGame = false;
+      startGame();
+    } else
     if (gameStarted === true && whoseTurnIsiT === true) {
       var nextField = nextAvailable();
       myFunction(nextField, computer);
